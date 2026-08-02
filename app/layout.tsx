@@ -35,16 +35,35 @@ export const metadata: Metadata = {
     description: openGraphDescription,
     url: "https://www.starixis.com",
     siteName: "Starixis",
-    images: ["/og-image.svg"],
+    // Must be a raster format — LinkedIn, X, Facebook, Slack and WhatsApp all
+    // ignore SVG, which leaves shared links with no preview image at all.
+    // Regenerate from og-image.svg with:
+    //   node -e "require('sharp')(require('fs').readFileSync('public/og-image.svg'),{density:144}).resize(1200,630).png().toFile('public/og-image.png')"
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: openGraphTitle, type: "image/png" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: openGraphTitle,
     description: openGraphDescription,
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
 };
+
+// CloudWatch RUM. Cookies are disabled, so nothing is stored on or read from the
+// visitor's device and no consent banner is required — see infra/terraform/rum.tf.
+// Renders only when both IDs are present at build time, so nothing loads until it
+// is configured. The privacy notice must describe whatever this actually does.
+const rumAppId = process.env.NEXT_PUBLIC_RUM_APP_ID;
+const rumIdentityPoolId = process.env.NEXT_PUBLIC_RUM_IDENTITY_POOL_ID;
+const rumRegion = process.env.NEXT_PUBLIC_RUM_REGION ?? "eu-west-2";
+
+const rumSnippet = (appId: string, identityPoolId: string, region: string) => `
+(function(n,i,v,r,s,c,x,z){x=window.AwsRumClient={q:[],n:n,i:i,v:v,r:r,c:c};window[n]=function(c,p){x.q.push({c:c,p:p});};
+z=document.createElement('script');z.async=true;z.src=s;document.head.insertBefore(z,document.head.getElementsByTagName('script')[0]);
+})('cwr','${appId}','1.0.0','${region}','https://client.rum.us-east-1.amazonaws.com/1.x/cwr.js',
+{sessionSampleRate:1,identityPoolId:'${identityPoolId}',endpoint:'https://dataplane.rum.${region}.amazonaws.com',telemetries:['performance','errors'],allowCookies:false,enableXRay:false});
+`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const organization = {
@@ -74,6 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       name: "Yogesh Nagar",
       jobTitle: "Founder",
       image: "https://www.starixis.com/yogesh-nagar-founder-starixis.jpg",
+      sameAs: ["https://www.linkedin.com/in/yogesh-nagar-uk/"],
     },
   };
   return (
@@ -81,6 +101,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
+        {rumAppId && rumIdentityPoolId && (
+          <script dangerouslySetInnerHTML={{ __html: rumSnippet(rumAppId, rumIdentityPoolId, rumRegion) }} />
+        )}
       </body>
     </html>
   );

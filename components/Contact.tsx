@@ -19,10 +19,24 @@ export function Contact() {
           </Reveal>
         </div>
         <Reveal className="email-panel">
-          <p className="eyebrow">Partnerships</p>
-          <h3>Discuss a partnership</h3>
+          <p className="eyebrow">Get in touch</p>
+          <h3>Start a conversation</h3>
           <p>Share a brief introduction to your organisation and where our interests may align.</p>
           <a className="email-link" href="mailto:contact@starixis.com">contact@starixis.com</a>
+          {/* Subject-line routing: one mailbox, but enquiries arrive pre-sorted. */}
+          <ul className="enquiry-routes">
+            {[
+              ["Retailers", "Retailer enquiry"],
+              ["Shopping centres", "Destination enquiry"],
+              ["Investors", "Investor enquiry"],
+            ].map(([label, subject]) => (
+              <li key={subject}>
+                <a href={`mailto:contact@starixis.com?subject=${encodeURIComponent(subject)}`}>
+                  {label} <span aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

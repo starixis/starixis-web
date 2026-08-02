@@ -33,3 +33,13 @@ output "custom_domain_enabled" {
   description = "Whether CloudFront is configured with starixis.com aliases."
   value       = var.enable_custom_domain
 }
+
+output "rum_app_monitor_id" {
+  description = "CloudWatch RUM application ID for NEXT_PUBLIC_RUM_APP_ID."
+  value       = var.enable_rum ? aws_rum_app_monitor.website[0].app_monitor_id : ""
+}
+
+output "rum_identity_pool_id" {
+  description = "Cognito identity pool ID for NEXT_PUBLIC_RUM_IDENTITY_POOL_ID."
+  value       = var.enable_rum ? aws_cognito_identity_pool.rum[0].id : ""
+}

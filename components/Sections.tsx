@@ -1,4 +1,4 @@
-import { MapPinned, Network, Search, Sparkles, Store, Waypoints } from "lucide-react";
+import { Gauge, Layers, MapPinned, Network, Search, ShieldCheck, Sparkles, Store, Waypoints } from "lucide-react";
 import Image from "next/image";
 import { Reveal } from "./Reveal";
 
@@ -54,45 +54,146 @@ const capabilities = [
   },
   {
     code: "05",
-    title: "Intelligent personalisation",
-    text: "Use data and AI responsibly to improve product relevance, customer discovery and the overall shopping experience.",
+    title: "Destination intelligence",
+    text: "Help retail destinations better understand engagement, product demand and customer activity across their physical ecosystem.",
     color: "#7aa8ff",
-    Icon: Sparkles,
+    Icon: MapPinned,
   },
   {
     code: "06",
-    title: "Destination intelligence",
-    text: "Help retail destinations better understand engagement, product demand and customer activity across their physical ecosystem.",
+    title: "Infrastructure that scales",
+    text: "Built for multi-location retail, with privacy-conscious customer experiences designed in from the start.",
     color: "#9a86ff",
-    Icon: MapPinned,
+    Icon: Layers,
   },
 ];
 
 const ecosystem = [
   {
     audience: "For shoppers",
-    text: "Discover more of what is available nearby and move more easily from inspiration to purchase.",
+    title: "Find what is actually available nearby.",
     color: "#4fd6e6",
+    points: [
+      "Search across a whole destination rather than store by store.",
+      "See what is available locally before making the journey.",
+      "Move from online discovery to in-store collection or purchase.",
+    ],
+    note: "No app to adopt before it is useful — discovery works from the web.",
   },
   {
     audience: "For retailers",
-    text: "Improve digital visibility, reach high-intent local customers and participate in connected destination experiences.",
+    title: "Reach local customers without changing how you operate.",
     color: "#7aa8ff",
+    points: [
+      "Become discoverable to nearby customers already searching with intent.",
+      "Connect through flexible product and inventory integrations.",
+      "See what local customers are looking for, not only what sold.",
+    ],
+    note: "No single mandated system — we work with the setup you already run.",
+    cta: ["Talk to us about retailer integration", "mailto:contact@starixis.com?subject=Retailer%20enquiry"],
   },
   {
-    audience: "For shopping destinations",
-    text: "Create a unified digital layer across stores, products, promotions and customer touchpoints.",
+    audience: "For shopping centres and destinations",
+    title: "One digital layer across the whole centre.",
     color: "#9a86ff",
+    points: [
+      "Unify stores, products and promotions in a single customer experience.",
+      "Understand engagement and product demand across your centre.",
+      "Give participating retailers a route to local digital discovery.",
+    ],
+    note: "Designed to complement the channels and schemes you already operate.",
+    cta: ["Talk to us about your centre", "mailto:contact@starixis.com?subject=Destination%20enquiry"],
   },
 ];
 
-const innovationPoints = [
-  "Digital discovery for physical inventory",
-  "Connected mobile, web and destination experiences",
-  "Flexible retailer and commerce integrations",
-  "AI-supported relevance and personalisation",
-  "Scalable infrastructure for multi-location retail",
-  "Privacy-conscious customer experiences",
+const intelligencePillars = [
+  {
+    audience: "For customers",
+    title: "Discovery that understands intent",
+    Icon: Sparkles,
+    color: "#4fd6e6",
+    items: [
+      ["Relevance that adapts", "Surface products, stores and offers that reflect what someone is actually looking for nearby."],
+      ["Search in natural language", "Let people describe what they want in their own words rather than guessing at categories."],
+      ["Context-aware suggestions", "Factor in proximity, availability and preference so recommendations stay useful."],
+    ],
+  },
+  {
+    audience: "For retailers and destinations",
+    title: "Operations informed by real demand",
+    Icon: Gauge,
+    color: "#9a86ff",
+    items: [
+      ["Local demand signals", "Understand what customers are searching for across a destination, not just what sold."],
+      ["Cleaner product data", "Keep product, pricing and availability information accurate and dependable across a destination."],
+      ["Journey insight", "See how customers move between digital discovery and physical visits."],
+    ],
+  },
+];
+
+// Phase-based rather than dated: signals sequence and direction without committing
+// to timelines or exposing specifics of the commercial roadmap.
+const roadmap = [
+  {
+    code: "01",
+    phase: "Now",
+    title: "Platform built, first pilot in preparation",
+    text: "The core platform is built. We are preparing our first destination pilot alongside launch partners.",
+    color: "#4fd6e6",
+  },
+  {
+    code: "02",
+    phase: "Next",
+    title: "Deeper retailer integration",
+    text: "Moving retailers from manual product data towards automated inventory and availability synchronisation.",
+    color: "#7aa8ff",
+  },
+  {
+    code: "03",
+    phase: "Then",
+    title: "Closing the local commerce loop",
+    text: "Connecting local discovery and purchase through to collection and delivery, so the journey completes end to end.",
+    color: "#9a86ff",
+  },
+  {
+    code: "04",
+    phase: "Beyond",
+    title: "Scale",
+    text: "Extending coverage across the UK, and in time into selected international markets.",
+    color: "#ff8a4c",
+  },
+];
+
+// Figures verified against the ONS retail sales bulletin (June 2026). Re-check
+// before republishing — the online share moves month to month.
+const investorStats = [
+  { figure: "70%+", label: "of Great Britain retail spend still happens outside online channels." },
+  { figure: "29.4%", label: "online share in June 2026 — a record since 2021, and still under a third." },
+];
+
+const whyNow = [
+  {
+    title: "Online has found its ceiling",
+    text: "Even at record penetration, the clear majority of retail spend stays physical. The opportunity is connecting that spend, not replacing it.",
+  },
+  {
+    title: "Retail data is finally tractable",
+    text: "Modern AI can make sense of retail data that was previously too inconsistent to work with at scale — the barrier that made this impractical before.",
+  },
+  {
+    title: "Destinations need a digital layer",
+    text: "Shopping centres increasingly need one connected experience across their tenants, and have no practical way to build it themselves.",
+  },
+];
+
+// Deliberately no per-stream maturity labels: stating which lines are unbuilt, in
+// build order, hands competitors a capability map. The "builds out as the platform
+// scales" framing below keeps it honest without itemising the gaps.
+const revenueStreams = [
+  { title: "Retailer subscriptions", text: "Recurring fees for discoverability, demand data and integration." },
+  { title: "Transaction commission", text: "A share of purchases completed through the platform." },
+  { title: "Advertising", text: "Sponsored placement and promotion across local discovery." },
+  { title: "Fulfilment", text: "Revenue from local delivery and collection." },
 ];
 
 export function Problem() {
@@ -175,17 +276,75 @@ export function Ecosystem() {
           One connected layer across shoppers, retailers and shopping destinations.
         </Reveal>
       </div>
-      <div className="ecosystem-wrap">
-        <div className="ecosystem-line" aria-hidden="true" />
-        <div className="ecosystem-grid">
-          {ecosystem.map((item, index) => (
-            <Reveal className="ecosystem-card" delay={index * 100} key={item.audience}>
-              <div className="ecosystem-node" style={{ borderColor: item.color, color: item.color }} aria-hidden="true" />
-              <h3>{item.audience}</h3>
-              <p>{item.text}</p>
+      <div className="audience-rows">
+        {ecosystem.map(({ audience, title, color, points, note, cta }, index) => (
+          <Reveal className="audience" delay={index * 80} key={audience}>
+            <div className="audience-head">
+              <div className="ecosystem-node" style={{ borderColor: color, color }} aria-hidden="true" />
+              <div className="audience-label" style={{ color }}>{audience}</div>
+              <h3>{title}</h3>
+            </div>
+            <div className="audience-body">
+              <ul className="audience-list">
+                {points.map((point) => (
+                  <li className="audience-item" key={point}>
+                    <span className="audience-marker" style={{ background: color }} aria-hidden="true" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="audience-note">{note}</p>
+              {cta && <a className="audience-cta" href={cta[1]}>{cta[0]} <span aria-hidden="true">→</span></a>}
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Intelligence() {
+  return (
+    <section id="intelligence" className="shell section" aria-labelledby="intelligence-heading">
+      <div className="intelligence-panel">
+        <div className="intelligence-glow" aria-hidden="true" />
+        <div className="intelligence-head">
+          <Reveal className="eyebrow">Applied intelligence</Reveal>
+          <Reveal as="h2" id="intelligence-heading" className="heading">
+            AI running quietly underneath the experience.
+          </Reveal>
+          <Reveal as="p" className="body-copy" delay={80}>
+            Intelligence is not a feature bolted onto Starixis — it is how the platform makes sense of fragmented retail data. We are building AI into the core of the product to help customers find what they need faster, and to help retailers and shopping destinations understand and serve local demand.
+          </Reveal>
+        </div>
+        <div className="intelligence-pillars">
+          {intelligencePillars.map(({ audience, title, Icon, color, items }, index) => (
+            <Reveal className="pillar" delay={index * 90} key={audience}>
+              <div className="icon-tile">
+                <Icon size={17} strokeWidth={1.5} color={color} aria-hidden="true" />
+              </div>
+              <div className="pillar-audience" style={{ color }}>{audience}</div>
+              <h3>{title}</h3>
+              <ul className="pillar-list">
+                {items.map(([label, text]) => (
+                  <li className="pillar-item" key={label}>
+                    <span className="pillar-marker" style={{ background: color }} aria-hidden="true" />
+                    <span>
+                      <strong>{label}</strong>
+                      <span>{text}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           ))}
         </div>
+        <Reveal className="intelligence-note" delay={160}>
+          <ShieldCheck size={17} strokeWidth={1.5} color="#7aa8ff" aria-hidden="true" />
+          <p>
+            Built responsibly. We use data and AI to improve relevance and insight while keeping customer experiences privacy-conscious, with human judgement where decisions matter.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
@@ -209,28 +368,167 @@ export function Mission() {
   );
 }
 
-export function InnovationAreas() {
+export function Roadmap() {
   return (
-    <section id="innovation" className="shell section" aria-labelledby="innovation-heading">
+    <section id="roadmap" className="shell section" aria-labelledby="roadmap-heading">
       <div className="section-header">
         <div>
-          <Reveal className="eyebrow">Built for what comes next</Reveal>
-          <Reveal as="h2" id="innovation-heading" className="heading">
-            Built for the next era of retail.
+          <Reveal className="eyebrow">Where we are going</Reveal>
+          <Reveal as="h2" id="roadmap-heading" className="heading">
+            Building in deliberate phases.
           </Reveal>
         </div>
         <Reveal as="p" className="note">
-          A focused approach to connected retail technology — designed for physical commerce, local discovery and destination-scale experiences.
+          Our direction of travel. Phases indicate sequence and priority rather than fixed dates.
         </Reveal>
       </div>
-      <ul className="innovation-points">
-        {innovationPoints.map((point, index) => (
-          <Reveal as="li" className="innovation-point" delay={(index % 3) * 70} key={point}>
-            <span className="innovation-point-marker" aria-hidden="true" />
-            <span>{point}</span>
+      <div className="roadmap">
+        <div className="roadmap-line" aria-hidden="true" />
+        <div className="roadmap-grid">
+          {roadmap.map(({ code, phase, title, text, color }, index) => (
+            <Reveal className="roadmap-step" delay={index * 80} key={code}>
+              <div className="roadmap-node" style={{ borderColor: color, color }} aria-hidden="true">{code}</div>
+              <div className="roadmap-phase" style={{ color }}>{phase}</div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Investors() {
+  return (
+    <section id="investors" className="band" aria-labelledby="investors-heading">
+      <div className="shell section">
+        <div className="section-header">
+          <div>
+            <Reveal className="eyebrow">For investors</Reveal>
+            <Reveal as="h2" id="investors-heading" className="heading">
+              The majority of retail is still physical.
+            </Reveal>
+          </div>
+          <Reveal as="p" className="note">
+            Starixis is building the commerce layer for the part of retail that digital has not yet reached.
+          </Reveal>
+        </div>
+
+        <div className="investor-stats">
+          {investorStats.map(({ figure, label }, index) => (
+            <Reveal className="investor-stat" delay={index * 90} key={figure}>
+              <div className="investor-figure">{figure}</div>
+              <p>{label}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal as="p" className="investor-source">
+          Source: ONS, Retail sales, Great Britain — June 2026.
+        </Reveal>
+
+        <div className="investor-cols">
+          <Reveal className="investor-block">
+            <h3>Why now</h3>
+            <p className="investor-block-lede">Three things have changed at once.</p>
+            <ul className="investor-list">
+              {whyNow.map(({ title, text }) => (
+                <li key={title}>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal className="investor-block" delay={90}>
+            <h3>How we make money</h3>
+            <p className="investor-block-lede">A model combining recurring and transactional revenue, building out as the platform scales.</p>
+            <ul className="investor-list">
+              {revenueStreams.map(({ title, text }) => (
+                <li key={title}>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+
+        <Reveal className="investor-note" delay={120}>
+          <p>
+            <strong>Defensibility.</strong> The visible product is the straightforward part. The advantage sits in the infrastructure beneath it and the relationships around it — both take time to build, both compound with every retailer and destination added, and neither can be bought quickly.
+          </p>
+        </Reveal>
+
+        <Reveal className="investor-cta" delay={160}>
+          <p>This is a high-level view of the market we are building for and how the business works. If you would like to understand more, we are happy to talk.</p>
+          <a className="button button-secondary" href="mailto:contact@starixis.com?subject=Investor%20enquiry">Investor enquiries</a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// Answers are drawn from claims already made elsewhere on the site — no new
+// commitments. Keep them in sync if the Ecosystem or Roadmap copy changes.
+export const faqs = [
+  {
+    q: "What does Starixis actually do?",
+    a: "Starixis is building a digital commerce layer for physical retail — making products in nearby stores discoverable online, and connecting that discovery through to an in-store visit, collection or purchase.",
+  },
+  {
+    q: "What do retailers have to change to take part?",
+    a: "As little as possible. We connect through flexible product and inventory integrations rather than requiring a single mandated system, so retailers can take part without changing how they already operate.",
+  },
+  {
+    q: "Does this replace the app or loyalty scheme our centre already runs?",
+    a: "No. It is designed to complement the channels and schemes a destination already operates, adding a connected discovery layer across participating retailers rather than replacing existing customer touchpoints.",
+  },
+  {
+    q: "Do shoppers need to download an app?",
+    a: "No. Discovery works from the web, so there is nothing a customer has to adopt before it is useful to them.",
+  },
+  {
+    q: "How is AI used?",
+    a: "To make discovery more relevant — understanding what someone is looking for, keeping product information accurate and dependable, and helping retailers and destinations understand local demand. We use it in a privacy-conscious way, with human judgement where decisions matter.",
+  },
+  {
+    q: "What stage is Starixis at?",
+    a: "The core platform is built and we are preparing our first destination pilot alongside launch partners. Our roadmap then moves to deeper retailer integration, closing the local commerce loop, and scaling coverage.",
+  },
+  {
+    q: "How does Starixis make money?",
+    a: "Through a combination of recurring and transactional revenue — retailer subscriptions, a share of transactions completed through the platform, advertising across local discovery, and fulfilment — building out as the platform scales.",
+  },
+];
+
+export function Faq() {
+  return (
+    <section id="faq" className="shell section" aria-labelledby="faq-heading">
+      <div className="section-header">
+        <div>
+          <Reveal className="eyebrow">Common questions</Reveal>
+          <Reveal as="h2" id="faq-heading" className="heading">
+            Questions we are asked most.
+          </Reveal>
+        </div>
+        <Reveal as="p" className="note">
+          If your question is not here, get in touch and we will answer it directly.
+        </Reveal>
+      </div>
+      <div className="faq-list">
+        {faqs.map(({ q, a }, index) => (
+          <Reveal className="faq-item" delay={(index % 3) * 60} key={q}>
+            <details>
+              <summary>
+                <span>{q}</span>
+                <span className="faq-icon" aria-hidden="true" />
+              </summary>
+              <p>{a}</p>
+            </details>
           </Reveal>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
@@ -252,7 +550,7 @@ export function Partnership() {
           </p>
         </Reveal>
         <Reveal className="hero-actions">
-          <a className="button button-primary" href="#contact">Discuss a partnership</a>
+          <a className="button button-primary" href="mailto:contact@starixis.com?subject=Partnership%20enquiry">Discuss a partnership</a>
         </Reveal>
       </div>
     </section>
@@ -302,11 +600,16 @@ export function Founder() {
           <Reveal as="p" className="founder-role">Founder, Starixis</Reveal>
           <Reveal className="founder-bio">
             <p>
-              Starixis was founded by Yogesh Nagar, a product builder focused on turning complex, fragmented systems into simpler digital experiences.
+              Yogesh has spent over 20 years building large-scale systems across retail, banking and the public sector, working across teams of up to 300 — turning complex, fragmented operations into simple digital experiences.
             </p>
             <p>
-              After years of working with large-scale technology, Yogesh began exploring how thoughtful engineering and product design could strengthen everyday physical shopping. He created Starixis as a home for building retail technology that connects shoppers, retailers and shopping destinations more effectively.
+              That work led him to a problem hiding in plain sight: most shopping still happens in physical stores, and almost none of it is digitally discoverable. He founded Starixis to close that gap — connecting shoppers, retailers and shopping destinations through a single commerce layer.
             </p>
+          </Reveal>
+          <Reveal className="founder-link" delay={80}>
+            <a href="https://www.linkedin.com/in/yogesh-nagar-uk/" target="_blank" rel="noopener noreferrer">
+              Connect on LinkedIn <span aria-hidden="true">→</span>
+            </a>
           </Reveal>
         </div>
       </div>

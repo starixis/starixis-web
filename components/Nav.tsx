@@ -6,10 +6,13 @@ import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
 
 const links = [
+  ["AI", "/#intelligence"],
   ["Vision", "/#vision"],
   ["Ecosystem", "/#ecosystem"],
-  ["Innovation", "/#innovation"],
+  ["Roadmap", "/#roadmap"],
+  ["Investors", "/#investors"],
   ["About", "/#about"],
+  ["FAQ", "/#faq"],
   ["Contact", "/#contact"],
 ];
 
@@ -37,8 +40,8 @@ export function Nav() {
         <Brand />
         <div className="nav-links">
           {links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
-          <Link className="nav-cta" href="/#contact">Partner with Starixis</Link>
         </div>
+        <Link className="nav-cta" href="/#contact">Partner with Starixis</Link>
         <button className="menu-button" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((value) => !value)}>
           {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
         </button>

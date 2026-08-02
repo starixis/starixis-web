@@ -5,6 +5,9 @@ out
 *.log
 .env*
 !.env.example
+# RUM app monitor and Cognito pool IDs are not secrets — they ship in the client
+# JS and are visible in view-source. Committed so builds work without a build env.
+!.env.production
 
 .terraform/
 *.tfstate

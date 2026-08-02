@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LegalPage, TBC, type TocItem } from "@/components/LegalPage";
+import { LegalPage, type TocItem } from "@/components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Website Privacy Notice — Starixis Limited",
@@ -26,7 +26,7 @@ const toc: TocItem[] = [
 
 export default function Privacy() {
   return (
-    <LegalPage title="Website Privacy Notice" effectiveDate="22 July 2026" lastUpdated="23 July 2026" toc={toc}>
+    <LegalPage title="Website Privacy Notice" effectiveDate="22 July 2026" lastUpdated="2 August 2026" toc={toc}>
       <section id="who-we-are">
         <h2>1. Who we are</h2>
         <p>
@@ -38,10 +38,9 @@ export default function Privacy() {
               <tr><th scope="row">Legal name</th><td>Starixis Limited</td></tr>
               <tr><th scope="row">Company number</th><td>17356742</td></tr>
               <tr><th scope="row">Registered office</th><td>71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ</td></tr>
-              <tr><th scope="row">Principal place of business</th><td><TBC>to be confirmed — presumed the same as the registered office unless notified otherwise</TBC></td></tr>
+              <tr><th scope="row">Principal place of business</th><td>As above — 71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ</td></tr>
               <tr><th scope="row">General contact email</th><td>contact@starixis.com</td></tr>
-              <tr><th scope="row">Privacy contact email</th><td>contact@starixis.com — <TBC>a dedicated privacy mailbox has not been confirmed; until one is set up, privacy enquiries should be sent to the general contact address above</TBC></td></tr>
-              <tr><th scope="row">ICO registration</th><td><TBC>whether Starixis Limited is registered with the UK Information Commissioner&rsquo;s Office, and its registration number if so, has not yet been confirmed</TBC></td></tr>
+              <tr><th scope="row">Privacy contact email</th><td>contact@starixis.com — privacy enquiries are handled through our general contact address</td></tr>
             </tbody>
           </table>
         </div>
@@ -85,9 +84,9 @@ export default function Privacy() {
         </p>
         <h3>Information generated automatically</h3>
         <p>
-          The website does not use cookies, analytics, or any visitor-tracking tool (see <a href="#cookies">Section 5</a>). However, like any website, delivering a page to your browser inherently involves our hosting and content-delivery provider processing limited technical information — for example, your IP address, general browser and device information, and the page requested — for the short period needed to route and serve that request. Starixis does not itself collect, view, or compile this information into visitor profiles, and has not configured a dedicated access-logging or analytics pipeline for the website. Our infrastructure provider may retain minimal operational logs as a standard part of running its service, for example for network security and reliability purposes. <TBC>The exact configuration and retention period of any such logs held by our infrastructure provider has not yet been confirmed and will be added once verified.</TBC>
+          The website does not use cookies or any technology that stores information on, or reads information from, your device (see <a href="#cookies">Section 5</a>). We use Amazon CloudWatch RUM, a cookieless monitoring tool, to understand how the website is used and how well it performs. With cookies disabled it records the page visited, your browser, operating system and device type, the country and region your visit came from, page-load performance measurements, and any JavaScript errors. It does not create a user or session identifier, does not follow you between pages or visits, and does not track you across other websites. However, like any website, delivering a page to your browser inherently involves our hosting and content-delivery provider processing limited technical information — for example, your IP address, general browser and device information, and the page requested — for the short period needed to route and serve that request. Starixis does not itself collect, view, or compile this information into visitor profiles, and has not configured a dedicated access-logging or analytics pipeline for the website. We have not enabled content-delivery or storage access logging on our infrastructure, so no website access logs are collected on our behalf. Our infrastructure provider may retain minimal operational logs as a standard part of running its own service, for example for network security and reliability purposes; those logs are held under its own retention practices and are not accessible to us as website access records.
         </p>
-        <p>We do not currently collect cookie identifiers, consent records, or approximate location inferred from your IP address, because none of those technologies are in use.</p>
+        <p>We do not collect cookie identifiers or cookie-consent records, because no cookies are in use. The monitoring tool described in <a href="#cookies">Section 5</a> reports the country and region a visit came from, derived from your IP address; it does not provide us with your IP address itself, or with any more precise location.</p>
       </section>
 
       <section id="how-and-why">
@@ -130,6 +129,11 @@ export default function Privacy() {
                 <td>Legitimate interests — maintaining a working, accessible website</td>
               </tr>
               <tr>
+                <td>Understanding how the website is used and how it performs</td>
+                <td>Page visited, browser/device information, country and region, performance measurements, JavaScript errors</td>
+                <td>Legitimate interests — understanding whether the website is useful, and keeping it fast and error-free. No cookies are used and no profile of you is created.</td>
+              </tr>
+              <tr>
                 <td>Complying with legal obligations</td>
                 <td>Any of the above, as required</td>
                 <td>Legal obligation</td>
@@ -150,10 +154,13 @@ export default function Privacy() {
       <section id="cookies">
         <h2>5. Cookies and similar technologies</h2>
         <p>
-          <strong>The starixis.com website does not use cookies, local storage, session storage, IndexedDB, tracking pixels, browser fingerprinting, or any other similar storage or access technology.</strong> This was confirmed by a review of the website&rsquo;s source code as part of preparing this notice.
+          <strong>The starixis.com website does not use cookies, local storage, session storage, IndexedDB, tracking pixels, browser fingerprinting, or any other technology that stores information on, or reads information from, your device.</strong> This was confirmed by a review of the website&rsquo;s source code as part of preparing this notice.
         </p>
         <p>
-          Because no cookies or similar technologies are used, we have not published a separate Cookie Notice or cookie-consent banner — doing so would imply a choice that does not actually exist. If this changes in the future (for example, if analytics or a chat tool is introduced), this section will be updated, any non-essential technology will not run before you have given valid consent, and a dedicated Cookie Notice and consent mechanism will be put in place before that happens.
+          The website does use Amazon CloudWatch RUM, a monitoring tool provided by our existing infrastructure provider, AWS. It is deliberately configured with cookies switched off. Because nothing is stored on or read from your device, the consent requirement under the Privacy and Electronic Communications Regulations does not apply, and no cookie-consent banner is shown. We describe it here so that you know what is running. <a href="#information-we-collect">Section 3</a> sets out exactly what it records.
+        </p>
+        <p>
+          We have not published a separate Cookie Notice, because no cookies are in use. If that changes in the future — for example if a cookie-based analytics tool, advertising technology or chat tool is introduced — this section will be updated, any non-essential technology will not run before you have given valid consent, and a dedicated Cookie Notice and consent mechanism will be put in place before that happens.
         </p>
       </section>
 
@@ -162,11 +169,12 @@ export default function Privacy() {
         <p>We do not sell website visitors&rsquo; personal information, and we do not share it with third parties for their own marketing purposes. We do share limited information with the categories of recipient below, where necessary for the purposes described in Section 4:</p>
         <ul>
           <li><strong>Hosting and content-delivery provider</strong> — Amazon Web Services (AWS), which stores the website&rsquo;s files and delivers the website to your browser (see <a href="#international-transfers">Section 7</a>).</li>
-          <li><strong>Email/mailbox provider</strong> — the provider that hosts the contact@starixis.com mailbox receives messages you send us. <TBC>The specific email provider has not yet been confirmed.</TBC></li>
+          <li><strong>Email/mailbox provider</strong> — Microsoft, which hosts the contact@starixis.com mailbox and therefore receives and stores messages you send us.</li>
+          <li><strong>Website monitoring</strong> — Amazon Web Services (AWS), which provides the cookieless CloudWatch RUM tool described in <a href="#cookies">Section 5</a>. The app monitor is hosted in the AWS London (eu-west-2) region.</li>
           <li><strong>Professional advisers</strong> — such as legal, accountancy, or other advisers, where necessary for the purposes described above.</li>
           <li><strong>Public authorities or regulators</strong> — where we are legally required to disclose information, for example in response to a valid legal request.</li>
         </ul>
-        <p>We do not currently use any analytics provider, advertising or retargeting provider, CRM, contact-form backend, or chat tool that would receive website visitors&rsquo; personal information — the audit behind this notice found none in use.</p>
+        <p>Aside from the cookieless monitoring tool described above, we do not use any third-party analytics provider, advertising or retargeting provider, CRM, contact-form backend, or chat tool that would receive website visitors&rsquo; personal information.</p>
       </section>
 
       <section id="international-transfers">
@@ -175,7 +183,10 @@ export default function Privacy() {
           Our hosting and content-delivery provider, AWS, stores the website&rsquo;s files in the AWS London (eu-west-2) region. AWS also uses a global content-delivery network to serve the website faster to visitors; under our current configuration this network uses edge locations in the United Kingdom, the European Union, and North America. As a result, the limited technical/connection information described in <a href="#information-we-collect">Section 3</a> may be processed at edge locations outside the UK, including in the United States, as an ordinary part of how that network routes and delivers requests.
         </p>
         <p>
-          Where personal information is transferred outside the UK in this way, we rely on the safeguards our provider makes available for international transfers (for example, the UK International Data Transfer Agreement, the UK Addendum to the EU Standard Contractual Clauses, or another legally recognised safeguard, as applicable). <TBC>The specific safeguard(s) AWS applies to this transfer have not yet been verified against AWS&rsquo;s current data-processing terms and will be confirmed and referenced here.</TBC> We do not claim that all providers store information only in the UK.
+          Where personal information is transferred outside the UK in this way, we rely on the safeguards our providers make available for international transfers. These are provided under each provider&rsquo;s standard data processing terms — the AWS Data Processing Addendum, and the Microsoft Products and Services Data Protection Addendum for the mailbox described in <a href="#sharing">Section 6</a> — which incorporate the EU Standard Contractual Clauses together with the UK Addendum. We do not claim that all providers store information only in the UK.
+        </p>
+        <p>
+          The website itself is a set of static files and contains no personal information. The only personal information that may be processed outside the UK in connection with the website is the limited connection information described above, handled transiently as requests are routed and served.
         </p>
       </section>
 
@@ -189,19 +200,19 @@ export default function Privacy() {
             <tbody>
               <tr>
                 <td>General enquiries</td>
-                <td><TBC>Proposed: up to 24 months from the last exchange, then deleted or anonymised unless a longer period is needed. This period is pending confirmation against Starixis&rsquo;s internal retention schedule.</TBC></td>
+                <td>Up to 24 months from the last exchange, then deleted or anonymised unless a longer period is required (for example, to resolve a dispute or meet a legal obligation).</td>
               </tr>
               <tr>
                 <td>Prospective commercial discussions</td>
-                <td><TBC>Proposed: for the duration of active discussion, plus up to 24 months after the last contact, or longer where discussions lead to a contract. Pending internal confirmation.</TBC></td>
+                <td>For the duration of the active discussion, plus up to 24 months after the last contact — or longer where discussions lead to a contract, in which case the information is retained under that contract.</td>
               </tr>
               <tr>
-                <td>Security and technical logs (where held by our infrastructure provider)</td>
-                <td><TBC>Governed by our infrastructure provider&rsquo;s standard log-retention settings; the exact period has not yet been confirmed, as no bespoke logging pipeline is currently configured.</TBC></td>
+                <td>Website access logs</td>
+                <td>Not applicable — access logging is not enabled on our content-delivery or storage infrastructure, so no website access logs are collected on our behalf. Any operational logs our infrastructure provider keeps for its own service are held under its own retention practices.</td>
               </tr>
               <tr>
-                <td>Analytics data</td>
-                <td>Not applicable — no analytics tool is in use.</td>
+                <td>Website monitoring data</td>
+                <td>Aggregate page, performance and error data held in our AWS account in the London region, retained for no longer than 12 months. No user or session identifier is created, so this data does not identify you.</td>
               </tr>
               <tr>
                 <td>Cookie-consent records</td>

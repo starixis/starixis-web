@@ -1,5 +1,4 @@
 import { IntelligenceNetwork } from "./IntelligenceNetwork";
-import { Reveal } from "./Reveal";
 
 export function Hero() {
   return (
@@ -11,15 +10,15 @@ export function Hero() {
       <div className="hero-aurora" aria-hidden="true" />
       <div className="hero-vignette" aria-hidden="true" />
       <div className="shell hero-inner">
-        <Reveal className="eyebrow">Retail technology for the physical world</Reveal>
-        <Reveal as="h1" delay={80}>Digitally transforming physical shopping.</Reveal>
-        <Reveal as="p" className="hero-lede" delay={160}>
+        <p className="eyebrow hero-rise">Retail technology for the physical world</p>
+        <h1 className="hero-rise" style={{ animationDelay: "80ms" }}>Digitally transforming physical shopping.</h1>
+        <p className="hero-lede hero-rise" style={{ animationDelay: "160ms" }}>
           Starixis is building the digital commerce layer for physical retail — connecting shoppers, retailers and shopping destinations through more discoverable, convenient and connected experiences.
-        </Reveal>
-        <Reveal className="hero-actions" delay={240}>
+        </p>
+        <div className="hero-actions hero-rise" style={{ animationDelay: "240ms" }}>
           <a className="button button-primary" href="#contact">Partner with Starixis</a>
           <a className="button button-secondary" href="#vision">Explore our vision</a>
-        </Reveal>
+        </div>
       </div>
       <div className="hero-scroll">
         <a href="#problem" aria-label="Scroll to next section">

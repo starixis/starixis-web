@@ -115,3 +115,45 @@ distribution="$(aws ssm get-parameter --region eu-west-2 --name /starixis/web/pr
 aws s3 sync out/ "s3://${bucket}/" --region eu-west-2 --delete
 aws cloudfront create-invalidation --distribution-id "$distribution" --paths '/*'
 ```
+
+## Analytics (CloudWatch RUM)
+
+The site uses Amazon CloudWatch RUM for cookieless usage and performance monitoring.
+Cookies are disabled on the app monitor, so no consent banner is required. Infrastructure
+lives in `infra/terraform/rum.tf` (app monitor + Cognito identity pool, `eu-west-2`).
+
+After `terraform apply`, read the IDs from the outputs:
+
+```bash
+terraform output rum_app_monitor_id
+terraform output rum_identity_pool_id
+```
+
+Put them in `.env.production` at the repo root (copy `.env.production.example`):
+
+```bash
+NEXT_PUBLIC_RUM_APP_ID=<rum_app_monitor_id>
+NEXT_PUBLIC_RUM_IDENTITY_POOL_ID=<rum_identity_pool_id>
+NEXT_PUBLIC_RUM_REGION=eu-west-2
+```
+
+Next.js loads `.env.production` automatically during `next build`, so no build
+environment or CI configuration is required — `npm run build` picks it up wherever it
+runs. The file is committed (see the `.gitignore` exception): these two IDs are not
+secrets, they ship in the client JavaScript and are visible in view-source.
+
+The snippet renders only when both IDs are set, so a checkout without the file ships
+no monitoring at all.
+
+**Keep this consistent with the Privacy Notice.** `app/privacy/page.tsx` states that a
+cookieless monitoring tool is in use (Sections 3, 4, 5, 6 and the Section 8 retention
+table). If RUM is disabled — `enable_rum = false`, or the file removed — that wording
+must be reverted, or the notice will describe something that is not running.
+
+Two limits worth knowing:
+
+- RUM records **no external referrer**, so it cannot attribute traffic to sources such as
+  LinkedIn. Enabling CloudFront access logging would provide that, at the cost of storing
+  visitor IP addresses.
+- With cookies disabled there are **no session or user journeys** — page views are counted
+  individually and cannot be linked into a visit.

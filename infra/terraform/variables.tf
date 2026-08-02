@@ -86,3 +86,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "enable_rum" {
+  description = "Create the CloudWatch RUM app monitor and its Cognito identity pool."
+  type        = bool
+  default     = true
+}
