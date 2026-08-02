@@ -90,6 +90,59 @@ Resources:
                   - iam:ListRolePolicies
                   - iam:PutRolePolicy
                 Resource: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${JenkinsRoleName}
+              # CloudWatch RUM (infra/terraform/rum.tf) needs a Cognito identity pool,
+              # an unauthenticated IAM role for the browser to assume, and the app
+              # monitor itself. Each statement is scoped to those resources only.
+              - Sid: ManageRumIdentityPool
+                Effect: Allow
+                Action:
+                  - cognito-identity:CreateIdentityPool
+                  - cognito-identity:DeleteIdentityPool
+                  - cognito-identity:DescribeIdentityPool
+                  - cognito-identity:UpdateIdentityPool
+                  - cognito-identity:GetIdentityPoolRoles
+                  - cognito-identity:SetIdentityPoolRoles
+                  - cognito-identity:TagResource
+                  - cognito-identity:UntagResource
+                  - cognito-identity:ListTagsForResource
+                Resource: !Sub arn:${AWS::Partition}:cognito-identity:${WebsiteRegion}:${AWS::AccountId}:identitypool/*
+              - Sid: ManageRumGuestRole
+                Effect: Allow
+                Action:
+                  - iam:CreateRole
+                  - iam:DeleteRole
+                  - iam:DeleteRolePolicy
+                  - iam:GetRole
+                  - iam:GetRolePolicy
+                  - iam:ListAttachedRolePolicies
+                  - iam:ListRolePolicies
+                  - iam:ListRoleTags
+                  - iam:PassRole
+                  - iam:PutRolePolicy
+                  - iam:TagRole
+                  - iam:UntagRole
+                  - iam:UpdateAssumeRolePolicy
+                Resource: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/starixis-web-production-rum-*
+              # RUM creates a service-linked role the first time an app monitor is
+              # made in the account. Scoped to that one role and that one service.
+              - Sid: CreateRumServiceLinkedRole
+                Effect: Allow
+                Action: iam:CreateServiceLinkedRole
+                Resource: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/rum.amazonaws.com/AWSServiceRoleForCloudWatchRUM
+                Condition:
+                  StringEquals:
+                    iam:AWSServiceName: rum.amazonaws.com
+              - Sid: ManageRumAppMonitor
+                Effect: Allow
+                Action:
+                  - rum:CreateAppMonitor
+                  - rum:DeleteAppMonitor
+                  - rum:GetAppMonitor
+                  - rum:UpdateAppMonitor
+                  - rum:TagResource
+                  - rum:UntagResource
+                  - rum:ListTagsForResource
+                Resource: !Sub arn:${AWS::Partition}:rum:${WebsiteRegion}:${AWS::AccountId}:appmonitor/starixis-web-production
       Tags:
         - Key: Project
           Value: starixis-web
