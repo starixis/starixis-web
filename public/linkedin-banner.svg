@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="191" viewBox="0 0 1128 191">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1128" y2="191" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F7DFF"/><stop offset=".55" stop-color="#8B5CF6"/><stop offset="1" stop-color="#FF8A4C"/>
+    </linearGradient>
+    <radialGradient id="auroraBlue" cx=".72" cy=".18" r=".55">
+      <stop offset="0" stop-color="#4F7DFF" stop-opacity=".30"/><stop offset="1" stop-color="#4F7DFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auroraViolet" cx=".26" cy=".92" r=".5">
+      <stop offset="0" stop-color="#8B5CF6" stop-opacity=".24"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auroraCyan" cx=".95" cy=".85" r=".45">
+      <stop offset="0" stop-color="#4FD6E6" stop-opacity=".18"/><stop offset="1" stop-color="#4FD6E6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1128" height="191" fill="#0a0b0e"/>
+  <rect width="1128" height="191" fill="url(#auroraBlue)"/>
+  <rect width="1128" height="191" fill="url(#auroraViolet)"/>
+  <rect width="1128" height="191" fill="url(#auroraCyan)"/>
+
+  <!-- grid, matching the site's .grid-mask -->
+  <g opacity=".26" stroke="#10202c" stroke-width="1">
+    <path d="M0 48h1128M0 96h1128M0 144h1128"/>
+    <path d="M96 0v191M192 0v191M288 0v191M384 0v191M480 0v191M576 0v191M672 0v191M768 0v191M864 0v191M960 0v191M1056 0v191"/>
+  </g>
+
+  <!-- starfield -->
+  <g fill="#d6e6ff">
+    <circle cx="612" cy="34" r="1" opacity=".55"/><circle cx="708" cy="150" r="0.8" opacity=".4"/>
+    <circle cx="840" cy="42" r="1.2" opacity=".6"/><circle cx="906" cy="120" r="0.7" opacity=".35"/>
+    <circle cx="1020" cy="60" r="1" opacity=".5"/><circle cx="762" cy="90" r="0.7" opacity=".3"/>
+    <circle cx="960" cy="160" r="0.9" opacity=".42"/><circle cx="666" cy="118" r="0.6" opacity=".3"/>
+    <circle cx="1080" cy="132" r="0.8" opacity=".38"/><circle cx="880" cy="78" r="0.6" opacity=".3"/>
+    <circle cx="540" cy="70" r="0.7" opacity=".32"/><circle cx="1044" cy="26" r="0.7" opacity=".34"/>
+  </g>
+
+  <!-- Network motif moved to the mid-left gap: text is now right-aligned so it
+       survives LinkedIn's mobile crop and the larger mobile logo overlay. -->
+  <g stroke="#7dd4f0" stroke-opacity=".24" stroke-width="1" fill="none">
+    <path d="M372 60 L462 124 L556 52"/>
+    <path d="M372 60 L556 52"/>
+  </g>
+  <g fill="#0c1620">
+    <circle cx="372" cy="60" r="4" stroke="#4FD6E6" stroke-width="1.5"/>
+    <circle cx="462" cy="124" r="5.5" stroke="#4FD6E6" stroke-width="1.7"/>
+    <circle cx="556" cy="52" r="4" stroke="#9A86FF" stroke-width="1.5"/>
+  </g>
+
+  <!-- Text starts at ~26% across: LinkedIn's logo avatar overlays roughly the
+       left 18% of the banner, and no brand mark is repeated here because that
+       avatar already carries it. -->
+  <text x="1072" y="86" text-anchor="end" fill="#f6f8fc" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" letter-spacing="-0.5">Digital transformation</text>
+  <text x="1072" y="128" text-anchor="end" fill="#4FD6E6" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" letter-spacing="-0.5">for the physical world.</text>
+</svg>
