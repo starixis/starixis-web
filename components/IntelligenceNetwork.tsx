@@ -37,17 +37,20 @@ export function IntelligenceNetwork() {
       }));
       edges.forEach(([from, to], index) => {
         const a = positions[from], b = positions[to];
-        ctx.strokeStyle = "rgba(79,214,230,.13)"; ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(110,205,235,.34)"; ctx.lineWidth = 1.1;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         const progress = ((time * .32) + index * .11) % 1;
-        ctx.fillStyle = "rgba(126,230,242,.9)";
-        ctx.beginPath(); ctx.arc(a.x + (b.x - a.x) * progress, a.y + (b.y - a.y) * progress, 1.7, 0, Math.PI * 2); ctx.fill();
+        const px = a.x + (b.x - a.x) * progress, py = a.y + (b.y - a.y) * progress;
+        ctx.fillStyle = "rgba(150,240,255,.28)";
+        ctx.beginPath(); ctx.arc(px, py, 6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "rgba(198,247,255,1)";
+        ctx.beginPath(); ctx.arc(px, py, 2.3, 0, Math.PI * 2); ctx.fill();
       });
       positions.forEach((node, index) => {
         const pulse = .5 + .5 * Math.sin(time * 1.4 + index);
-        ctx.fillStyle = `rgba(79,214,230,${.04 + pulse * .05})`;
-        ctx.beginPath(); ctx.arc(node.x, node.y, node.r + 4 + pulse * 3, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#0c1620"; ctx.strokeStyle = node.c; ctx.lineWidth = 1.5;
+        ctx.fillStyle = `rgba(79,214,230,${.10 + pulse * .12})`;
+        ctx.beginPath(); ctx.arc(node.x, node.y, node.r + 7 + pulse * 5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#0c1620"; ctx.strokeStyle = node.c; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       });
       if (!reduced) frame = requestAnimationFrame(draw);
@@ -60,11 +63,11 @@ export function IntelligenceNetwork() {
   return (
     <div className="network" aria-hidden="true">
       <canvas ref={canvasRef} />
-      <span className="network-label" style={{ left: "8%", top: "20%" }}>store</span>
-      <span className="network-label" style={{ right: "6%", top: "12%" }}>digital</span>
-      <span className="network-label" style={{ left: "44%", top: "47%" }}>context</span>
-      <span className="network-label" style={{ left: "14%", bottom: "16%" }}>inventory</span>
-      <span className="network-label" style={{ right: "10%", bottom: "22%" }}>signals</span>
+      <span className="network-label" style={{ left: "8%", top: "20%" }}>shoppers</span>
+      <span className="network-label" style={{ right: "6%", top: "12%" }}>retailers</span>
+      <span className="network-label" style={{ left: "40%", top: "47%" }}>discovery</span>
+      <span className="network-label" style={{ left: "10%", bottom: "16%" }}>destinations</span>
+      <span className="network-label" style={{ right: "8%", bottom: "22%" }}>commerce</span>
     </div>
   );
 }

@@ -6,8 +6,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500"], display: "swap" });
 
-const title = "Starixis Limited — Connected Retail Innovation";
-const description = "Starixis develops connected retail technology designed to bring systems, operations, information, and customer experiences together.";
+const title = "Starixis | Digitally Transforming Physical Shopping";
+const description = "Starixis is a UK retail technology company building the digital commerce layer for physical retail, connecting shoppers, retailers and shopping destinations.";
+const openGraphTitle = "Digitally Transforming Physical Shopping | Starixis";
+const openGraphDescription = "Building connected digital commerce experiences for shoppers, retailers and physical shopping destinations.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.starixis.com"),
@@ -28,8 +30,20 @@ export const metadata: Metadata = {
     shortcut: "/starixis-icon-32.png",
     apple: [{ url: "/starixis-app-icon-1024.png", sizes: "1024x1024", type: "image/png" }],
   },
-  openGraph: { title, description, url: "https://www.starixis.com", siteName: "Starixis", images: ["/og-image.svg"], type: "website" },
-  twitter: { card: "summary_large_image", title, description, images: ["/og-image.svg"] },
+  openGraph: {
+    title: openGraphTitle,
+    description: openGraphDescription,
+    url: "https://www.starixis.com",
+    siteName: "Starixis",
+    images: ["/og-image.svg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: openGraphTitle,
+    description: openGraphDescription,
+    images: ["/og-image.svg"],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -38,6 +52,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@type": "Organization",
     name: "Starixis Limited",
     legalName: "Starixis Limited",
+    alternateName: "Starixis",
+    description,
     url: "https://www.starixis.com",
     logo: "https://www.starixis.com/starixis-icon-512.png",
     sameAs: ["https://www.linkedin.com/company/starixis"],
@@ -61,7 +77,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     },
   };
   return (
-    <html lang="en" className={`${inter.variable} ${space.variable} ${mono.variable}`}>
+    <html lang="en-GB" className={`${inter.variable} ${space.variable} ${mono.variable}`}>
       <body>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }} />
