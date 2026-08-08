@@ -10,7 +10,7 @@ export function Contact() {
             Tell us how we can work together.
           </Reveal>
           <Reveal as="p" className="body-copy">
-            We welcome conversations with retailers, shopping destination operators, technology partners and investors interested in the digital future of physical retail.
+            We welcome selected conversations with retailers, retail destination operators, technology partners and investors interested in the digital future of physical retail.
           </Reveal>
           <Reveal className="contact-meta">
             <div>
@@ -21,7 +21,7 @@ export function Contact() {
         <Reveal className="email-panel">
           <p className="eyebrow">Get in touch</p>
           <h3>Start a conversation</h3>
-          <p>Share a brief introduction to your organisation and where our interests may align.</p>
+          <p>Share a brief introduction to your organisation and how you would like to work with Starixis.</p>
           <a className="email-link" href="mailto:contact@starixis.com">contact@starixis.com</a>
           {/* Subject-line routing: one mailbox, but enquiries arrive pre-sorted. */}
           <ul className="enquiry-routes">

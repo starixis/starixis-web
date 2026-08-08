@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
 
 const links = [
-  ["AI", "/#intelligence"],
   ["Vision", "/#vision"],
   ["Ecosystem", "/#ecosystem"],
-  ["Roadmap", "/#roadmap"],
   ["Investors", "/#investors"],
+  ["Partnerships", "/#partnership"],
   ["About", "/#about"],
   ["FAQ", "/#faq"],
   ["Contact", "/#contact"],
@@ -41,14 +40,14 @@ export function Nav() {
         <div className="nav-links">
           {links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
         </div>
-        <Link className="nav-cta" href="/#contact">Partner with Starixis</Link>
+        <Link className="nav-cta" href="/#contact">Start a conversation</Link>
         <button className="menu-button" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((value) => !value)}>
           {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
         </button>
       </div>
       <div id="mobile-menu" className={`mobile-menu${open ? " open" : ""}`}>
         {links.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>)}
-        <Link className="button button-primary" href="/#contact" onClick={() => setOpen(false)}>Partner with Starixis</Link>
+        <Link className="button button-primary" href="/#contact" onClick={() => setOpen(false)}>Start a conversation</Link>
       </div>
     </nav>
   );

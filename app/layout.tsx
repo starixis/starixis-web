@@ -6,10 +6,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500"], display: "swap" });
 
-const title = "Starixis | Digitally Transforming Physical Shopping";
-const description = "Starixis is a UK retail technology company building the digital commerce layer for physical retail, connecting shoppers, retailers and shopping destinations.";
-const openGraphTitle = "Digitally Transforming Physical Shopping | Starixis";
-const openGraphDescription = "Building connected digital commerce experiences for shoppers, retailers and physical shopping destinations.";
+const title = "Starixis | Digital Commerce for Physical Retail";
+const description = "Starixis is developing technology designed to help physical retail evolve for a more connected world.";
+const openGraphTitle = "The Digital Commerce Layer for Physical Retail | Starixis";
+const openGraphDescription = "Technology for a more connected relationship between digital commerce and real-world retail environments.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.starixis.com"),
@@ -35,18 +35,14 @@ export const metadata: Metadata = {
     description: openGraphDescription,
     url: "https://www.starixis.com",
     siteName: "Starixis",
-    // Must be a raster format — LinkedIn, X, Facebook, Slack and WhatsApp all
-    // ignore SVG, which leaves shared links with no preview image at all.
-    // Regenerate from og-image.svg with:
-    //   node -e "require('sharp')(require('fs').readFileSync('public/og-image.svg'),{density:144}).resize(1200,630).png().toFile('public/og-image.png')"
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: openGraphTitle, type: "image/png" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: openGraphTitle, type: "image/png" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: openGraphTitle,
     description: openGraphDescription,
-    images: ["/og-image.png"],
+    images: ["/og.png"],
   },
 };
 

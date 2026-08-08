@@ -1,264 +1,100 @@
-import { Gauge, Layers, MapPinned, Network, Search, ShieldCheck, Sparkles, Store, Waypoints } from "lucide-react";
 import Image from "next/image";
 import { Reveal } from "./Reveal";
 
-const problems = [
+const ecosystemParticipants = [
+  { number: "01", label: "Customers", color: "#4fd6e6" },
+  { number: "02", label: "Retailers", color: "#7aa8ff" },
+  { number: "03", label: "Retail destinations", color: "#9a86ff" },
+  { number: "04", label: "Technology partners", color: "#ff8a4c" },
+];
+
+const responsiblePrinciples = ["Security", "Privacy", "Reliability", "Accessibility", "Responsible use of data"];
+
+export const faqs = [
   {
-    number: "01",
-    title: "Fragmented discovery",
-    text: "Customers move between individual shops, websites and platforms to understand what is available locally.",
-    color: "#4fd6e6",
+    q: "What does Starixis do?",
+    a: "Starixis is developing technology for the digital transformation of physical retail. We are focused on creating a more connected relationship between digital commerce and real-world retail environments. Specific platform capabilities are discussed with partners directly.",
   },
   {
-    number: "02",
-    title: "Disconnected customer journeys",
-    text: "Digital discovery, in-store visits, payments, collection and retailer engagement often operate as separate experiences.",
-    color: "#7aa8ff",
+    q: "Is Starixis a marketplace?",
+    a: "Our ambitions extend beyond any single traditional retail technology category. Starixis is developing an underlying technology platform for connected physical retail, with capabilities that will evolve as the platform and ecosystem develop.",
   },
   {
-    number: "03",
-    title: "Limited destination-level visibility",
-    text: "Shopping destinations have limited ability to create a unified digital experience across participating retailers.",
-    color: "#9a86ff",
+    q: "Who is Starixis built for?",
+    a: "Our work considers the wider physical retail ecosystem, including customers, retailers, shopping destinations and technology partners. We work selectively with organisations where there is a strong strategic fit.",
+  },
+  {
+    q: "Does Starixis replace existing retailer or shopping-centre technology?",
+    a: "No. Our philosophy is to complement the retail ecosystem rather than require organisations to replace established technology unnecessarily. The exact approach depends on the environment and partner.",
+  },
+  {
+    q: "How does Starixis use AI?",
+    a: "AI forms part of our broader technology strategy. We are exploring its use where it can meaningfully improve retail experiences and understanding while maintaining appropriate safeguards around privacy, security and human oversight. Detailed capabilities are not disclosed publicly.",
+  },
+  {
+    q: "What stage is Starixis at?",
+    a: "Starixis is actively developing and validating its technology and engaging with potential partners around future deployments. Additional information is available during relevant partnership or investment discussions.",
+  },
+  {
+    q: "How does Starixis make money?",
+    a: "Starixis is developing a commercial model designed around the value its technology creates across the retail ecosystem. Detailed commercial information is shared directly with prospective partners and investors.",
+  },
+  {
+    q: "Can retailers or shopping destinations work with Starixis?",
+    a: "Yes. We welcome conversations with organisations interested in exploring the future of connected physical retail.",
   },
 ];
 
-const capabilities = [
-  {
-    code: "01",
-    title: "Local product discovery",
-    text: "Help customers discover products, stores and relevant offers available within nearby physical retail destinations.",
-    color: "#4fd6e6",
-    Icon: Search,
-  },
-  {
-    code: "02",
-    title: "Connected retail experiences",
-    text: "Bring mobile, web, QR-enabled and destination-based customer touchpoints into a more consistent journey.",
-    color: "#7aa8ff",
-    Icon: Network,
-  },
-  {
-    code: "03",
-    title: "Digital-to-physical commerce",
-    text: "Enable customers to move naturally from online discovery and purchase intent to physical collection and in-store engagement.",
-    color: "#9a86ff",
-    Icon: Waypoints,
-  },
-  {
-    code: "04",
-    title: "Retailer connectivity",
-    text: "Support retailers through flexible product, inventory and commerce integrations without forcing every business into the same operating model.",
-    color: "#4fd6e6",
-    Icon: Store,
-  },
-  {
-    code: "05",
-    title: "Destination intelligence",
-    text: "Help retail destinations better understand engagement, product demand and customer activity across their physical ecosystem.",
-    color: "#7aa8ff",
-    Icon: MapPinned,
-  },
-  {
-    code: "06",
-    title: "Infrastructure that scales",
-    text: "Built for multi-location retail, with privacy-conscious customer experiences designed in from the start.",
-    color: "#9a86ff",
-    Icon: Layers,
-  },
-];
-
-const ecosystem = [
-  {
-    audience: "For shoppers",
-    title: "Find what is actually available nearby.",
-    color: "#4fd6e6",
-    points: [
-      "Search across a whole destination rather than store by store.",
-      "See what is available locally before making the journey.",
-      "Move from online discovery to in-store collection or purchase.",
-    ],
-    note: "No app to adopt before it is useful — discovery works from the web.",
-  },
-  {
-    audience: "For retailers",
-    title: "Reach local customers without changing how you operate.",
-    color: "#7aa8ff",
-    points: [
-      "Become discoverable to nearby customers already searching with intent.",
-      "Connect through flexible product and inventory integrations.",
-      "See what local customers are looking for, not only what sold.",
-    ],
-    note: "No single mandated system — we work with the setup you already run.",
-    cta: ["Talk to us about retailer integration", "mailto:contact@starixis.com?subject=Retailer%20enquiry"],
-  },
-  {
-    audience: "For shopping centres and destinations",
-    title: "One digital layer across the whole centre.",
-    color: "#9a86ff",
-    points: [
-      "Unify stores, products and promotions in a single customer experience.",
-      "Understand engagement and product demand across your centre.",
-      "Give participating retailers a route to local digital discovery.",
-    ],
-    note: "Designed to complement the channels and schemes you already operate.",
-    cta: ["Talk to us about your centre", "mailto:contact@starixis.com?subject=Destination%20enquiry"],
-  },
-];
-
-const intelligencePillars = [
-  {
-    audience: "For customers",
-    title: "Discovery that understands intent",
-    Icon: Sparkles,
-    color: "#4fd6e6",
-    items: [
-      ["Relevance that adapts", "Surface products, stores and offers that reflect what someone is actually looking for nearby."],
-      ["Search in natural language", "Let people describe what they want in their own words rather than guessing at categories."],
-      ["Context-aware suggestions", "Factor in proximity, availability and preference so recommendations stay useful."],
-    ],
-  },
-  {
-    audience: "For retailers and destinations",
-    title: "Operations informed by real demand",
-    Icon: Gauge,
-    color: "#9a86ff",
-    items: [
-      ["Local demand signals", "Understand what customers are searching for across a destination, not just what sold."],
-      ["Cleaner product data", "Keep product, pricing and availability information accurate and dependable across a destination."],
-      ["Journey insight", "See how customers move between digital discovery and physical visits."],
-    ],
-  },
-];
-
-// Phase-based rather than dated: signals sequence and direction without committing
-// to timelines or exposing specifics of the commercial roadmap.
-const roadmap = [
-  {
-    code: "01",
-    phase: "Now",
-    title: "Platform built, first pilot in preparation",
-    text: "The core platform is built. We are preparing our first destination pilot alongside launch partners.",
-    color: "#4fd6e6",
-  },
-  {
-    code: "02",
-    phase: "Next",
-    title: "Deeper retailer integration",
-    text: "Moving retailers from manual product data towards automated inventory and availability synchronisation.",
-    color: "#7aa8ff",
-  },
-  {
-    code: "03",
-    phase: "Then",
-    title: "Closing the local commerce loop",
-    text: "Connecting local discovery and purchase through to collection and delivery, so the journey completes end to end.",
-    color: "#9a86ff",
-  },
-  {
-    code: "04",
-    phase: "Beyond",
-    title: "Scale",
-    text: "Extending coverage across the UK, and in time into selected international markets.",
-    color: "#ff8a4c",
-  },
-];
-
-// Figures verified against the ONS retail sales bulletin (June 2026). Re-check
-// before republishing — the online share moves month to month.
-const investorStats = [
-  { figure: "70%+", label: "of Great Britain retail spend still happens outside online channels." },
-  { figure: "29.4%", label: "online share in June 2026 — a record since 2021, and still under a third." },
-];
-
-const whyNow = [
-  {
-    title: "Online has found its ceiling",
-    text: "Even at record penetration, the clear majority of retail spend stays physical. The opportunity is connecting that spend, not replacing it.",
-  },
-  {
-    title: "Retail data is finally tractable",
-    text: "Modern AI can make sense of retail data that was previously too inconsistent to work with at scale — the barrier that made this impractical before.",
-  },
-  {
-    title: "Destinations need a digital layer",
-    text: "Shopping centres increasingly need one connected experience across their tenants, and have no practical way to build it themselves.",
-  },
-];
-
-// Deliberately no per-stream maturity labels: stating which lines are unbuilt, in
-// build order, hands competitors a capability map. The "builds out as the platform
-// scales" framing below keeps it honest without itemising the gaps.
-const revenueStreams = [
-  { title: "Retailer subscriptions", text: "Recurring fees for discoverability, demand data and integration." },
-  { title: "Transaction commission", text: "A share of purchases completed through the platform." },
-  { title: "Advertising", text: "Sponsored placement and promotion across local discovery." },
-  { title: "Fulfilment", text: "Revenue from local delivery and collection." },
-];
-
-export function Problem() {
+export function Introduction() {
   return (
-    <section id="problem" className="shell section" aria-labelledby="problem-heading">
-      <div className="manifesto">
-        <Reveal className="eyebrow">The opportunity</Reveal>
-        <Reveal as="h2" id="problem-heading" className="heading">
-          Physical shopping was never designed for digital discovery.
-        </Reveal>
-        <Reveal className="problem-intro">
-          <p className="body-copy">
-            Online shopping has made products instantly searchable, comparable and accessible. Physical retail, however, remains fragmented across individual stores, systems and locations.
-          </p>
-          <p className="body-copy">
-            Customers often cannot easily discover which products are available nearby, compare options across a shopping destination, access relevant local offers or move seamlessly from digital discovery to an in-store purchase.
-          </p>
-          <p className="body-copy problem-close">Starixis is working to close that gap.</p>
-        </Reveal>
-      </div>
-      <div className="problem-grid">
-        {problems.map((item, index) => (
-          <Reveal className="problem-card" delay={index * 90} key={item.title}>
-            <div className="problem-number" style={{ color: item.color }}>{item.number}</div>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
+    <section id="vision" className="shell section opening" aria-labelledby="opening-heading">
+      <div className="opening-grid">
+        <div>
+          <Reveal className="eyebrow">Our focus</Reveal>
+          <Reveal as="h2" id="opening-heading" className="heading">
+            Physical retail, connected for a digital world.
           </Reveal>
-        ))}
+        </div>
+        <Reveal className="opening-copy">
+          <p>Our focus is on creating infrastructure that brings digital capability closer to the physical retail experience — while keeping retailers, destinations and real-world shopping at the centre.</p>
+          <p>We believe the next generation of retail will not be defined by online or offline alone, but by how intelligently the two can work together.</p>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-export function Vision() {
+export function Landscape() {
   return (
-    <section id="vision" className="band" aria-labelledby="vision-heading">
-      <div className="shell section">
-        <div className="section-header vision-header">
-          <div>
-            <Reveal className="eyebrow">Our vision</Reveal>
-            <Reveal as="h2" id="vision-heading" className="heading">
-              The digital commerce layer for physical retail.
-            </Reveal>
-          </div>
+    <section id="landscape" className="band" aria-labelledby="landscape-heading">
+      <div className="shell section narrative-grid">
+        <div>
+          <Reveal className="eyebrow">The landscape</Reveal>
+          <Reveal as="h2" id="landscape-heading" className="heading">Building for a more connected retail landscape.</Reveal>
         </div>
-        <Reveal className="vision-lede">
-          <p className="body-copy">
-            Starixis is developing technology that helps transform physical retail destinations into connected, digitally discoverable and increasingly shoppable environments.
-          </p>
-          <p className="body-copy">
-            Our vision is to make local shopping as easy to explore as online commerce, while keeping physical stores and shopping destinations at the centre of the experience.
-          </p>
+        <Reveal className="narrative-copy">
+          <p>Physical retail is complex. Customers, retailers, destinations, technology and commerce all operate across different systems and experiences.</p>
+          <p>Starixis is exploring how those environments can become more connected, responsive and digitally enabled without adding unnecessary complexity.</p>
+          <p>The technology behind that vision is being developed deliberately, with an emphasis on scalability, interoperability and long-term usefulness.</p>
         </Reveal>
-        <div className="card-grid">
-          {capabilities.map(({ code, title, text, color, Icon }, index) => (
-            <Reveal className="innovation-card" delay={(index % 3) * 80} key={title}>
-              <div className="icon-tile">
-                <Icon size={17} strokeWidth={1.5} color={color} aria-hidden="true" />
-              </div>
-              <div className="card-label" style={{ color }}>{code}</div>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </Reveal>
-          ))}
-        </div>
+      </div>
+    </section>
+  );
+}
+
+export function Strengthened() {
+  return (
+    <section className="future" aria-labelledby="strengthened-heading">
+      <div className="grid-mask" />
+      <div className="shell future-inner">
+        <Reveal className="eyebrow">Our principle</Reveal>
+        <Reveal as="h2" id="strengthened-heading">Physical retail. <span>Strengthened by technology.</span></Reveal>
+        <Reveal className="future-copy">
+          <p>We are not trying to replace the physical shopping experience.</p>
+          <p>We believe technology can strengthen it.</p>
+          <p>Starixis is focused on helping create retail environments that are easier to engage with, easier to understand and better connected to the digital expectations customers already have elsewhere in their lives.</p>
+          <p>How that experience evolves will continue to expand as the platform develops.</p>
+        </Reveal>
       </div>
     </section>
   );
@@ -267,35 +103,23 @@ export function Vision() {
 export function Ecosystem() {
   return (
     <section id="ecosystem" className="shell section" aria-labelledby="ecosystem-heading">
-      <div className="cap-heading">
-        <Reveal className="eyebrow">The ecosystem</Reveal>
-        <Reveal as="h2" id="ecosystem-heading" className="heading">
-          Connecting the physical retail ecosystem.
-        </Reveal>
-        <Reveal as="p" className="caption">
-          One connected layer across shoppers, retailers and shopping destinations.
-        </Reveal>
+      <div className="section-header">
+        <div>
+          <Reveal className="eyebrow">The ecosystem</Reveal>
+          <Reveal as="h2" id="ecosystem-heading" className="heading">Built around the retail ecosystem.</Reveal>
+        </div>
+        <Reveal as="p" className="note">Technology designed to create value across the participants that make physical retail work.</Reveal>
       </div>
-      <div className="audience-rows">
-        {ecosystem.map(({ audience, title, color, points, note, cta }, index) => (
-          <Reveal className="audience" delay={index * 80} key={audience}>
-            <div className="audience-head">
-              <div className="ecosystem-node" style={{ borderColor: color, color }} aria-hidden="true" />
-              <div className="audience-label" style={{ color }}>{audience}</div>
-              <h3>{title}</h3>
-            </div>
-            <div className="audience-body">
-              <ul className="audience-list">
-                {points.map((point) => (
-                  <li className="audience-item" key={point}>
-                    <span className="audience-marker" style={{ background: color }} aria-hidden="true" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="audience-note">{note}</p>
-              {cta && <a className="audience-cta" href={cta[1]}>{cta[0]} <span aria-hidden="true">→</span></a>}
-            </div>
+      <Reveal className="ecosystem-intro">
+        <p>Starixis takes an ecosystem approach.</p>
+        <p>We are interested in technology that can create value across the different participants that make physical retail work — including customers, retailers, retail destinations and technology partners.</p>
+        <p>Rather than designing another isolated retail tool, our ambition is to create technology capable of becoming part of the broader infrastructure around modern physical commerce.</p>
+      </Reveal>
+      <div className="ecosystem-cards">
+        {ecosystemParticipants.map(({ number, label, color }, index) => (
+          <Reveal className="ecosystem-card" delay={index * 70} key={label}>
+            <span className="ecosystem-index" style={{ color }}>{number}</span>
+            <h3>{label}</h3>
           </Reveal>
         ))}
       </div>
@@ -303,98 +127,63 @@ export function Ecosystem() {
   );
 }
 
-export function Intelligence() {
+export function Evolution() {
   return (
-    <section id="intelligence" className="shell section" aria-labelledby="intelligence-heading">
-      <div className="intelligence-panel">
-        <div className="intelligence-glow" aria-hidden="true" />
-        <div className="intelligence-head">
-          <Reveal className="eyebrow">Applied intelligence</Reveal>
-          <Reveal as="h2" id="intelligence-heading" className="heading">
-            AI running quietly underneath the experience.
-          </Reveal>
-          <Reveal as="p" className="body-copy" delay={80}>
-            Intelligence is not a feature bolted onto Starixis — it is how the platform makes sense of fragmented retail data. We are building AI into the core of the product to help customers find what they need faster, and to help retailers and shopping destinations understand and serve local demand.
-          </Reveal>
-        </div>
-        <div className="intelligence-pillars">
-          {intelligencePillars.map(({ audience, title, Icon, color, items }, index) => (
-            <Reveal className="pillar" delay={index * 90} key={audience}>
-              <div className="icon-tile">
-                <Icon size={17} strokeWidth={1.5} color={color} aria-hidden="true" />
-              </div>
-              <div className="pillar-audience" style={{ color }}>{audience}</div>
-              <h3>{title}</h3>
-              <ul className="pillar-list">
-                {items.map(([label, text]) => (
-                  <li className="pillar-item" key={label}>
-                    <span className="pillar-marker" style={{ background: color }} aria-hidden="true" />
-                    <span>
-                      <strong>{label}</strong>
-                      <span>{text}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal className="intelligence-note" delay={160}>
-          <ShieldCheck size={17} strokeWidth={1.5} color="#7aa8ff" aria-hidden="true" />
-          <p>
-            Built responsibly. We use data and AI to improve relevance and insight while keeping customer experiences privacy-conscious, with human judgement where decisions matter.
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Mission() {
-  return (
-    <section className="future" aria-labelledby="mission-heading">
-      <div className="grid-mask" />
-      <div className="shell future-inner">
-        <Reveal className="eyebrow">Our principle</Reveal>
-        <Reveal as="h2" id="mission-heading">
-          We are not replacing physical shopping.
-          <span> We are making it more discoverable, connected and convenient.</span>
-        </Reveal>
-        <Reveal as="p" className="body-copy">
-          The future of retail is not purely online or purely offline. It is a connected experience in which digital technology strengthens physical stores, shopping destinations and the communities around them.
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Roadmap() {
-  return (
-    <section id="roadmap" className="shell section" aria-labelledby="roadmap-heading">
-      <div className="section-header">
+    <section className="band" aria-labelledby="evolution-heading">
+      <div className="shell section evolution-grid">
         <div>
-          <Reveal className="eyebrow">Where we are going</Reveal>
-          <Reveal as="h2" id="roadmap-heading" className="heading">
-            Building in deliberate phases.
-          </Reveal>
+          <Reveal className="eyebrow">The platform</Reveal>
+          <Reveal as="h2" id="evolution-heading" className="heading">Designed to evolve.</Reveal>
         </div>
-        <Reveal as="p" className="note">
-          Our direction of travel. Phases indicate sequence and priority rather than fixed dates.
+        <Reveal className="evolution-panel">
+          <p>Retail environments, customer behaviour and technology are constantly changing.</p>
+          <p>Starixis is therefore being developed as an adaptable platform rather than around a single interaction, channel or use case.</p>
+          <p>Our longer-term ambition extends beyond any individual feature: to help establish a stronger digital foundation for physical retail.</p>
         </Reveal>
       </div>
-      <div className="roadmap">
-        <div className="roadmap-line" aria-hidden="true" />
-        <div className="roadmap-grid">
-          {roadmap.map(({ code, phase, title, text, color }, index) => (
-            <Reveal className="roadmap-step" delay={index * 80} key={code}>
-              <div className="roadmap-node" style={{ borderColor: color, color }} aria-hidden="true">{code}</div>
-              <div className="roadmap-phase" style={{ color }}>{phase}</div>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </Reveal>
-          ))}
-        </div>
+    </section>
+  );
+}
+
+export function Responsibility() {
+  return (
+    <section className="shell section" aria-labelledby="responsibility-heading">
+      <div className="responsibility-head">
+        <Reveal className="eyebrow">Responsible technology</Reveal>
+        <Reveal as="h2" id="responsibility-heading" className="heading">Responsible technology from the beginning.</Reveal>
+        <Reveal className="responsibility-copy">
+          <p>Technology operating within real-world retail environments needs to earn trust.</p>
+          <p>Security, privacy, reliability, accessibility and responsible use of data are considered fundamental to how Starixis is being developed.</p>
+          <p>We believe sophisticated technology should make experiences simpler — not make the technology itself more visible.</p>
+        </Reveal>
       </div>
+      <div className="value-grid" aria-label="Responsible technology principles">
+        {responsiblePrinciples.map((principle, index) => (
+          <Reveal className="value-item" delay={index * 60} key={principle}>
+            <span aria-hidden="true" />
+            {principle}
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Development() {
+  return (
+    <section id="development" className="shell section" aria-labelledby="development-heading">
+      <Reveal className="development-panel">
+        <div className="development-glow" aria-hidden="true" />
+        <div className="development-content">
+          <p className="eyebrow">Our approach</p>
+          <h2 id="development-heading" className="heading">Building deliberately.</h2>
+          <div className="development-copy">
+            <p>Starixis is currently developing and validating its technology with a focus on selected real-world retail environments.</p>
+            <p>We are taking a deliberate approach to market development, working with organisations that share our interest in the future of connected physical retail.</p>
+            <p>Further details about our technology, commercial model and deployment approach are shared directly with relevant partners and investors.</p>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -402,132 +191,17 @@ export function Roadmap() {
 export function Investors() {
   return (
     <section id="investors" className="band" aria-labelledby="investors-heading">
-      <div className="shell section">
-        <div className="section-header">
-          <div>
-            <Reveal className="eyebrow">For investors</Reveal>
-            <Reveal as="h2" id="investors-heading" className="heading">
-              The majority of retail is still physical.
-            </Reveal>
-          </div>
-          <Reveal as="p" className="note">
-            Starixis is building the commerce layer for the part of retail that digital has not yet reached.
-          </Reveal>
-        </div>
-
-        <div className="investor-stats">
-          {investorStats.map(({ figure, label }, index) => (
-            <Reveal className="investor-stat" delay={index * 90} key={figure}>
-              <div className="investor-figure">{figure}</div>
-              <p>{label}</p>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal as="p" className="investor-source">
-          Source: ONS, Retail sales, Great Britain — June 2026.
+      <div className="shell section engagement-inner">
+        <Reveal className="eyebrow">For investors</Reveal>
+        <Reveal as="h2" id="investors-heading" className="heading">Infrastructure for the digital evolution of physical retail.</Reveal>
+        <Reveal className="engagement-copy">
+          <p>Starixis is being built around a long-term belief: physical commerce represents a significant part of the retail economy, yet much of its underlying experience remains disconnected from the capabilities customers increasingly expect from digital environments.</p>
+          <p>We see an opportunity to build technology at that intersection.</p>
+          <p>Our commercial strategy, platform architecture and go-to-market model are discussed directly with prospective investors.</p>
         </Reveal>
-
-        <div className="investor-cols">
-          <Reveal className="investor-block">
-            <h3>Why now</h3>
-            <p className="investor-block-lede">Three things have changed at once.</p>
-            <ul className="investor-list">
-              {whyNow.map(({ title, text }) => (
-                <li key={title}>
-                  <strong>{title}</strong>
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal className="investor-block" delay={90}>
-            <h3>How we make money</h3>
-            <p className="investor-block-lede">A model combining recurring and transactional revenue, building out as the platform scales.</p>
-            <ul className="investor-list">
-              {revenueStreams.map(({ title, text }) => (
-                <li key={title}>
-                  <strong>{title}</strong>
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-
-        <Reveal className="investor-note" delay={120}>
-          <p>
-            <strong>Defensibility.</strong> The visible product is the straightforward part. The advantage sits in the infrastructure beneath it and the relationships around it — both take time to build, both compound with every retailer and destination added, and neither can be bought quickly.
-          </p>
+        <Reveal className="hero-actions">
+          <a className="button button-primary" href="mailto:contact@starixis.com?subject=Investor%20enquiry">Investor enquiries <span aria-hidden="true">→</span></a>
         </Reveal>
-
-        <Reveal className="investor-cta" delay={160}>
-          <p>This is a high-level view of the market we are building for and how the business works. If you would like to understand more, we are happy to talk.</p>
-          <a className="button button-secondary" href="mailto:contact@starixis.com?subject=Investor%20enquiry">Investor enquiries</a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-// Answers are drawn from claims already made elsewhere on the site — no new
-// commitments. Keep them in sync if the Ecosystem or Roadmap copy changes.
-export const faqs = [
-  {
-    q: "What does Starixis actually do?",
-    a: "Starixis is building a digital commerce layer for physical retail — making products in nearby stores discoverable online, and connecting that discovery through to an in-store visit, collection or purchase.",
-  },
-  {
-    q: "What do retailers have to change to take part?",
-    a: "As little as possible. We connect through flexible product and inventory integrations rather than requiring a single mandated system, so retailers can take part without changing how they already operate.",
-  },
-  {
-    q: "Does this replace the app or loyalty scheme our centre already runs?",
-    a: "No. It is designed to complement the channels and schemes a destination already operates, adding a connected discovery layer across participating retailers rather than replacing existing customer touchpoints.",
-  },
-  {
-    q: "Do shoppers need to download an app?",
-    a: "No. Discovery works from the web, so there is nothing a customer has to adopt before it is useful to them.",
-  },
-  {
-    q: "How is AI used?",
-    a: "To make discovery more relevant — understanding what someone is looking for, keeping product information accurate and dependable, and helping retailers and destinations understand local demand. We use it in a privacy-conscious way, with human judgement where decisions matter.",
-  },
-  {
-    q: "What stage is Starixis at?",
-    a: "The core platform is built and we are preparing our first destination pilot alongside launch partners. Our roadmap then moves to deeper retailer integration, closing the local commerce loop, and scaling coverage.",
-  },
-  {
-    q: "How does Starixis make money?",
-    a: "Through a combination of recurring and transactional revenue — retailer subscriptions, a share of transactions completed through the platform, advertising across local discovery, and fulfilment — building out as the platform scales.",
-  },
-];
-
-export function Faq() {
-  return (
-    <section id="faq" className="shell section" aria-labelledby="faq-heading">
-      <div className="section-header">
-        <div>
-          <Reveal className="eyebrow">Common questions</Reveal>
-          <Reveal as="h2" id="faq-heading" className="heading">
-            Questions we are asked most.
-          </Reveal>
-        </div>
-        <Reveal as="p" className="note">
-          If your question is not here, get in touch and we will answer it directly.
-        </Reveal>
-      </div>
-      <div className="faq-list">
-        {faqs.map(({ q, a }, index) => (
-          <Reveal className="faq-item" delay={(index % 3) * 60} key={q}>
-            <details>
-              <summary>
-                <span>{q}</span>
-                <span className="faq-icon" aria-hidden="true" />
-              </summary>
-              <p>{a}</p>
-            </details>
-          </Reveal>
-        ))}
       </div>
     </section>
   );
@@ -535,22 +209,16 @@ export function Faq() {
 
 export function Partnership() {
   return (
-    <section id="partnership" className="band" aria-labelledby="partnership-heading">
-      <div className="shell section partnership-inner">
+    <section id="partnership" className="shell section" aria-labelledby="partnership-heading">
+      <div className="engagement-inner">
         <Reveal className="eyebrow">Partnerships</Reveal>
-        <Reveal as="h2" id="partnership-heading" className="heading">
-          Building the future of physical retail together.
-        </Reveal>
-        <Reveal className="partnership-copy">
-          <p className="body-copy">
-            We are engaging with retailers, shopping destinations, technology partners and industry leaders who share our ambition to create better connected physical shopping experiences.
-          </p>
-          <p className="body-copy">
-            Whether you operate a retail brand, manage a shopping destination or work across retail innovation, we would be interested in starting a conversation.
-          </p>
+        <Reveal as="h2" id="partnership-heading" className="heading">Building the future of physical retail together.</Reveal>
+        <Reveal className="engagement-copy">
+          <p>We are interested in conversations with retailers, shopping destinations, technology organisations and industry partners exploring the future of physical commerce.</p>
+          <p>Starixis is selectively engaging with organisations where there is a strong strategic fit.</p>
         </Reveal>
         <Reveal className="hero-actions">
-          <a className="button button-primary" href="mailto:contact@starixis.com?subject=Partnership%20enquiry">Discuss a partnership</a>
+          <a className="button button-secondary" href="mailto:contact@starixis.com?subject=Partnership%20enquiry">Discuss a partnership <span aria-hidden="true">→</span></a>
         </Reveal>
       </div>
     </section>
@@ -559,18 +227,12 @@ export function Partnership() {
 
 export function About() {
   return (
-    <section id="about" className="shell section" aria-labelledby="about-heading">
-      <div className="about-inner">
+    <section id="about" className="band" aria-labelledby="about-heading">
+      <div className="shell section about-inner">
         <Reveal className="eyebrow">About Starixis</Reveal>
-        <Reveal as="h2" id="about-heading" className="about-lead">
-          Starixis is a UK retail technology company focused on the digital transformation of physical shopping.
-        </Reveal>
-        <Reveal as="p" className="about-secondary">
-          We are developing connected commerce technology that brings together product discovery, physical retailers, shopping destinations and modern customer experiences.
-        </Reveal>
-        <Reveal as="p" className="about-secondary">
-          Our goal is to help physical retail become more searchable, measurable, accessible and digitally connected — without losing the value of the in-person shopping experience.
-        </Reveal>
+        <Reveal as="h2" id="about-heading" className="about-lead">A UK retail technology company focused on the digital transformation of physical shopping.</Reveal>
+        <Reveal as="p" className="about-secondary">Starixis develops technology for the evolving relationship between physical retail and digital commerce.</Reveal>
+        <Reveal as="p" className="about-secondary">Our ambition is simple: help make physical retail more connected, intelligent and ready for the next generation of customer expectations.</Reveal>
         <Reveal as="p" className="about-legal">Starixis Limited</Reveal>
       </div>
     </section>
@@ -584,14 +246,7 @@ export function Founder() {
         <Reveal className="founder-portrait-wrap">
           <div className="founder-glow" aria-hidden="true" />
           <div className="founder-portrait">
-            <Image
-              src="/yogesh-nagar-founder-starixis.jpg"
-              alt="Yogesh Nagar, Founder of Starixis"
-              width={1400}
-              height={1700}
-              sizes="(max-width: 900px) min(86vw, 360px), 360px"
-              unoptimized
-            />
+            <Image src="/yogesh-nagar-founder-starixis.jpg" alt="Yogesh Nagar, Founder of Starixis" width={1400} height={1700} sizes="(max-width: 900px) min(86vw, 360px), 360px" unoptimized />
           </div>
         </Reveal>
         <div className="founder-copy">
@@ -599,19 +254,41 @@ export function Founder() {
           <Reveal as="h2" id="founder-heading" className="founder-name">Yogesh Nagar</Reveal>
           <Reveal as="p" className="founder-role">Founder, Starixis</Reveal>
           <Reveal className="founder-bio">
-            <p>
-              Yogesh has spent over 20 years building large-scale systems across retail, banking and the public sector, working across teams of up to 300 — turning complex, fragmented operations into simple digital experiences.
-            </p>
-            <p>
-              That work led him to a problem hiding in plain sight: most shopping still happens in physical stores, and almost none of it is digitally discoverable. He founded Starixis to close that gap — connecting shoppers, retailers and shopping destinations through a single commerce layer.
-            </p>
+            <p>Yogesh is a technology consultant and product builder with more than 20 years of experience working with complex, large-scale technology systems.</p>
+            <p>Starixis was founded from a belief that some of the most interesting opportunities in retail now sit at the intersection of technology and the physical world.</p>
           </Reveal>
           <Reveal className="founder-link" delay={80}>
-            <a href="https://www.linkedin.com/in/yogesh-nagar-uk/" target="_blank" rel="noopener noreferrer">
-              Connect on LinkedIn <span aria-hidden="true">→</span>
-            </a>
+            <a href="https://www.linkedin.com/in/yogesh-nagar-uk/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">→</span></a>
           </Reveal>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function Faq() {
+  return (
+    <section id="faq" className="band" aria-labelledby="faq-heading">
+      <div className="shell section">
+        <div className="section-header">
+          <div>
+            <Reveal className="eyebrow">Common questions</Reveal>
+            <Reveal as="h2" id="faq-heading" className="heading">Questions about Starixis.</Reveal>
+          </div>
+        </div>
+        <div className="faq-list">
+          {faqs.map(({ q, a }, index) => (
+            <Reveal className="faq-item" delay={(index % 3) * 60} key={q}>
+              <details>
+                <summary><span>{q}</span><span className="faq-icon" aria-hidden="true" /></summary>
+                <p>{a}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal className="faq-cta">
+          <a className="button button-secondary" href="mailto:contact@starixis.com">Start a conversation <span aria-hidden="true">→</span></a>
+        </Reveal>
       </div>
     </section>
   );

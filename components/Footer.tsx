@@ -8,16 +8,15 @@ export function Footer() {
         <div className="footer-top">
           <div>
             <Brand />
-            <p className="footer-positioning">Digitally transforming physical shopping.</p>
+            <p className="footer-positioning">The digital commerce layer for physical retail.</p>
           </div>
           <div className="footer-links">
             <div className="footer-column">
               <span className="footer-label">Explore</span>
-              <Link href="/#intelligence">AI</Link>
               <Link href="/#vision">Vision</Link>
               <Link href="/#ecosystem">Ecosystem</Link>
-              <Link href="/#roadmap">Roadmap</Link>
               <Link href="/#investors">Investors</Link>
+              <Link href="/#partnership">Partnerships</Link>
               <Link href="/#about">About</Link>
               <Link href="/#faq">FAQ</Link>
             </div>

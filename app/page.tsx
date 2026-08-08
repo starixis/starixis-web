@@ -2,7 +2,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
-import { About, Ecosystem, Faq, faqs, Founder, Intelligence, Investors, Mission, Partnership, Problem, Roadmap, Vision } from "@/components/Sections";
+import { About, Development, Ecosystem, Evolution, Faq, faqs, Founder, Introduction, Investors, Landscape, Partnership, Responsibility, Strengthened } from "@/components/Sections";
 
 export default function Home() {
   const faqSchema = {
@@ -19,12 +19,13 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Intelligence />
-        <Problem />
-        <Vision />
+        <Introduction />
+        <Landscape />
+        <Strengthened />
         <Ecosystem />
-        <Mission />
-        <Roadmap />
+        <Evolution />
+        <Responsibility />
+        <Development />
         <Investors />
         <Partnership />
         <About />
