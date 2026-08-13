@@ -87,7 +87,7 @@ resource "aws_rum_app_monitor" "website" {
   count = var.enable_rum ? 1 : 0
 
   name           = local.name_prefix
-  domain         = var.domain_name
+  domain         = "www.${var.domain_name}"
   cw_log_enabled = false
 
   app_monitor_configuration {
